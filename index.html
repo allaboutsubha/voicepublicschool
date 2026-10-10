@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice Public School - Excellence in Education Since 2012</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#16a34a',
+                        secondary: '#15803d',
+                        accent: '#22c55e',
+                        dark: '#14532d',
+                        forest: '#052e16'
+                    },
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Professional School Styling */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(20, 83, 45, 0.92) 0%, rgba(22, 163, 74, 0.85) 50%, rgba(5, 46, 22, 0.95) 100%);
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(240,253,244,0.98) 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(22, 163, 74, 0.1);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 50%, #15803d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%);
+        }
+
+        .gradient-bg-dark {
+            background: linear-gradient(135deg, #14532d 0%, #052e16 100%);
+        }
+
+        /* Navigation */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #16a34a;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes slideInFromTop {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-in-up { animation: fadeInUp 0.8s ease-out forwards; }
+        .animate-fade-in-left { animation: fadeInLeft 0.8s ease-out forwards; }
+        .animate-fade-in-right { animation: fadeInRight 0.8s ease-out forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-slow { animation: pulse 3s ease-in-out infinite; }
+
+        /* Card Hover Effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(22, 163, 74, 0.25);
+        }
+
+        /* OTP Input Styling */
+        .otp-box {
+            width: 50px;
+            height: 60px;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .otp-box:focus {
+            border-color: #16a34a;
+            box-shadow: 0 0 0 4px rgba(22, 163, 74, 0.1);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Notice Board Ticker */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(90deg, #16a34a 0%, #22c55e 100%);
+        }
+        .ticker {
+            display: flex;
+            animation: ticker 40s linear infinite;
+            white-space: nowrap;
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Section Divider */
+        .section-divider {
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #16a34a, #22c55e);
+            border-radius: 2px;
+        }
+
+        /* Image Overlay */
+        .img-overlay {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-overlay::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 60%);
+            z-index: 1;
+        }
+
+        /* Campus Card */
+        .campus-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .campus-card:hover {
+            border-left-color: #16a34a;
+            box-shadow: 0 10px 30px rgba(22, 163, 74, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f0fdf4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #16a34a;
+            border-radius: 4px;
+        }
+
+        /* Pattern Background */
+        .pattern-bg {
+            background-image: radial-gradient(circle at 1px 1px, rgba(22, 163, 74, 0.15) 1px, transparent 0);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Top Announcement Bar -->
+    <div class="ticker-wrap py-2 text-white text-sm font-medium">
+        <div class="ticker">
+            <span class="mx-8 flex items-center">
+                <i class="fas fa-bullhorn mr-2"></i>
+                📝 Online Application for Class V to IX is going on - Apply Now!
+            </span>
+            <span class="mx-8 flex items-center">
+                <i class="fas fa-calendar-check mr-2"></i>
+                Admission Test: Saturday, 24th October 2026 | Time: 12:00 PM - 2:00 PM
+            </span>
+            <span class="mx-8 flex items-center">
+                <i class="fas fa-download mr-2"></i>
+                Download Question Set & Admit Card Available Now
+            </span>
+            <span class="mx-8 flex items-center">
+                <i class="fas fa-graduation-cap mr-2"></i>
+                500+ Students Placed in Government Medical Colleges
+            </span>
+            <span class="mx-8 flex items-center">
+                <i class="fas fa-bullhorn mr-2"></i>
+                📝 Online Application for Class V to IX is going on - Apply Now!
+            </span>
+            <span class="mx-8 flex items-center">
+                <i class="fas fa-calendar-check mr-2"></i>
+                Admission Test: Saturday, 24th October 2026 | Time: 12:00 PM - 2:00 PM
+            </span>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-100" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <img src="https://www.voicepublicschool.in/logo.png" alt="Voice Public School" class="h-14 w-auto object-contain">
+                    <div class="hidden md:block">
+                        <h1 class="text-xl font-bold text-dark font-display">VOICE PUBLIC SCHOOL</h1>
+                        <p class="text-xs text-gray-500 font-medium">Run by: Voice Educational & Welfare Trust</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-1">
+                    <a href="#home" class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm">Home</a>
+                    
+                    <div class="nav-item relative">
+                        <button class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm flex items-center">
+                            About Us <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
+                            <a href="#about" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-bullseye mr-2 text-primary"></i> Our Mission
+                            </a>
+                            <a href="#team" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-users mr-2 text-primary"></i> Our Team
+                            </a>
+                            <a href="#impact" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-chart-line mr-2 text-primary"></i> Our Impact
+                            </a>
+                            <a href="#" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-trophy mr-2 text-primary"></i> Awards & Recognition
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item relative">
+                        <button class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm flex items-center">
+                            Programs <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
+                            <a href="#programs" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-school mr-2 text-primary"></i> Class III to X (Residential)
+                            </a>
+                            <a href="#programs" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-book mr-2 text-primary"></i> Special Coaching (XI & XII)
+                            </a>
+                            <a href="#programs" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-stethoscope mr-2 text-primary"></i> NEET (All India Medical)
+                            </a>
+                            <a href="#programs" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-laptop-code mr-2 text-primary"></i> WBJEE / JEE
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item relative">
+                        <button class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm flex items-center">
+                            Our Campus <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute top-full left-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 max-h-80 overflow-y-auto z-50">
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Mangaljan Ketly Bari, Murshidabad
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Mangaljan Collegiate, Murshidabad
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Umarpur Hospital, Murshidabad
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Umarpur (Boys), Murshidabad
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Laxmipur (Girls), Malda
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Taratla, Kolkata
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Science City, Kolkata
+                            </a>
+                            <a href="#campus" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors text-primary font-medium">
+                                <i class="fas fa-ellipsis-h mr-2"></i> View All 26 Campuses
+                            </a>
+                        </div>
+                    </div>
+
+                    <a href="#gallery" class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm">Gallery</a>
+                    <a href="#notice" class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm">Notice Board</a>
+
+                    <div class="nav-item relative">
+                        <button class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm flex items-center">
+                            Admission <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
+                            <a href="#admission" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-user-plus mr-2 text-primary"></i> V to IX
+                            </a>
+                            <a href="#admission" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-user-graduate mr-2 text-primary"></i> XI & XII (Science & Arts)
+                            </a>
+                            <a href="#admission" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-briefcase-medical mr-2 text-primary"></i> JEE / NEET
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="nav-item relative">
+                        <button class="nav-link px-4 py-2 text-gray-700 hover:text-primary font-medium text-sm flex items-center">
+                            Policy <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50">
+                            <a href="#policy" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-file-contract mr-2 text-primary"></i> Terms & Condition
+                            </a>
+                            <a href="#policy" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-shield-alt mr-2 text-primary"></i> Privacy Policy
+                            </a>
+                            <a href="#policy" class="block px-4 py-3 text-sm text-gray-700 hover:bg-green-50 hover:text-primary transition-colors">
+                                <i class="fas fa-credit-card mr-2 text-primary"></i> Payment Cancellation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Login Buttons -->
+                <div class="hidden lg:flex items-center space-x-3">
+                    <button onclick="openModal('loginModal')" class="flex items-center space-x-2 bg-gradient-to-r from-primary to-accent text-white px-5 py-2.5 rounded-full font-semibold text-sm shadow-lg shadow-green-200 hover:shadow-green-300 transition-all transform hover:-translate-y-0.5">
+                        <i class="fas fa-lock"></i>
+                        <span>Login</span>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="lg:hidden text-gray-700 text-2xl" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed inset-y-0 right-0 w-80 bg-white shadow-2xl z-[60] overflow-y-auto">
+        <div class="p-6">
+            <div class="flex justify-between items-center mb-8">
+                <img src="https://www.voicepublicschool.in/logo.png" alt="Logo" class="h-12">
+                <button onclick="toggleMobileMenu()" class="text-gray-500 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="space-y-1">
+                <a href="#home" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Home</a>
+                <a href="#about" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">About Us</a>
+                <a href="#programs" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Programs</a>
+                <a href="#campus" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Our Campus</a>
+                <a href="#gallery" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Gallery</a>
+                <a href="#notice" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Notice Board</a>
+                <a href="#admission" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Admission</a>
+                <a href="#policy" class="block px-4 py-3 rounded-lg text-gray-700 hover:bg-green-50 hover:text-primary font-medium" onclick="toggleMobileMenu()">Policy</a>
+                <button onclick="openModal('loginModal'); toggleMobileMenu();" class="w-full mt-4 gradient-bg text-white px-6 py-3 rounded-xl font-semibold shadow-lg">
+                    <i class="fas fa-lock mr-2"></i> Secure Login
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1580582932707-520aed457f8f?w=1920&q=80" alt="School Building" class="w-full h-full object-cover">
+            <div class="hero-overlay absolute inset-0"></div>
+        </div>
+
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-white/10 rounded-full animate-float hidden md:block"></div>
+        <div class="absolute bottom-20 right-10 w-32 h-32 bg-white/5 rounded-full animate-float hidden md:block" style="animation-delay: 1s;"></div>
+        <div class="absolute top-1/2 right-20 w-16 h-16 bg-white/10 rounded-full animate-float hidden md:block" style="animation-delay: 2s;"></div>
+
+        <!-- Hero Content -->
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-20">
+            <div class="animate-fade-in-up">
+                <div class="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-sm font-medium mb-8">
+                    <span class="flex h-2 w-2 rounded-full bg-green-300 mr-2 animate-pulse"></span>
+                    Admissions Open 2027 - Class III to IX
+                </div>
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold font-display mb-6 leading-tight">
+                    Where the mind is<br>
+                    <span class="text-green-200">without fear</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-green-50 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
+                    Welcome to Voice Public School. We nurture talents, build character, and make dreams come true for students across West Bengal.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <a href="#admission" class="px-8 py-4 bg-white text-primary rounded-full font-bold text-lg shadow-2xl hover:shadow-white/30 transform hover:-translate-y-1 transition-all flex items-center">
+                        Apply Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#programs" class="px-8 py-4 bg-transparent border-2 border-white text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all flex items-center">
+                        Explore Programs <i class="fas fa-book-open ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">500+</div>
+                        <div class="text-sm text-gray-600">Medical Doctors</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">26+</div>
+                        <div class="text-sm text-gray-600">Campuses</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">5000+</div>
+                        <div class="text-sm text-gray-600">Current Students</div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 text-center">
+                        <div class="text-3xl md:text-4xl font-bold text-primary mb-2">13+</div>
+                        <div class="text-sm text-gray-600">Years of Excellence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white/70 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-white pattern-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">About Us</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Shaping Future Leaders</h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                    Established in 2012, Voice Public School has grown from 24 students to over 5000, spreading knowledge across 8 districts of West Bengal.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+                <!-- Image -->
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-full h-full gradient-bg rounded-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&q=80" alt="Students Learning" class="relative rounded-3xl shadow-2xl w-full h-[400px] object-cover">
+                    <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-6 max-w-[200px]">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-award text-primary text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="text-2xl font-bold text-gray-900">WBBSE</div>
+                                <div class="text-xs text-gray-500">Affiliated</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div>
+                    <h3 class="text-3xl font-bold text-gray-900 font-display mb-6">Our Mission & Vision</h3>
+                    <div class="space-y-4 text-gray-600 leading-relaxed">
+                        <p>
+                            মহান সৃষ্টিকর্তার নামে শুরু করছি, আমাদের সম্মানিত অভিভাবকবৃন্দ, শিক্ষক-অশিক্ষক কর্মীবৃন্দ, ক্যাম্পাসের দায়িত্বপ্রাপ্ত প্রধান ব্যক্তিবর্গ এবং আমাদের স্নেহের ছাত্রছাত্রী সকলকে আন্তরিক শুভেচ্ছা জানাই।
+                        </p>
+                        <p>
+                            মাত্র ২৪ জন শিক্ষার্থী নিয়ে ২০১২ সালে শুরু করা Medical NEET কোচিংয়ের যে যাত্রা শুরু হয়েছিল ২০১৫ তে এসে পঞ্চম থেকে দ্বাদশ শ্রেণি এবং NEET, WBJEE, WBCS এর প্রস্তুতির এক নির্ভরযোগ্য প্রতিষ্ঠান হিসেবে রাজ্যের ৮টি জেলায় ২৬ টি শিক্ষাকেন্দ্র নিয়ে জারি রয়েছে ভয়েস পাবলিক স্কুলের সাফল্যমণ্ডিত পথচলা।
+                        </p>
+                        <p>
+                            মাত্র এক দশকের মধ্যেই ৫০০-র বেশি ছাত্রছাত্রী সুযোগ পেয়েছে সরকারি মেডিকেল কলেজে পড়ার। এছাড়াও বহু শিক্ষার্থী পূরণ করেছে ইঞ্জিনিয়ারিং, নার্সিং, ভেটেরিনারি, এগ্রিকালচার ও WBCS এর বিভিন্ন গ্রেডে সরকারি চাকরির স্বপ্ন।
+                        </p>
+                    </div>
+                    <div class="mt-8 flex flex-wrap gap-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-primary"></i>
+                            <span class="text-gray-700 font-medium">WBBSE & WBCHSE Affiliated</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-primary"></i>
+                            <span class="text-gray-700 font-medium">Residential Facilities</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check-circle text-primary"></i>
+                            <span class="text-gray-700 font-medium">Expert Faculty</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team Section -->
+    <section id="team" class="py-24 bg-gradient-to-b from-green-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Leadership</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Meet Our Leaders</h2>
+                <div class="section-divider mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Chairman -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80" alt="Chairman" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold">Al-Haz Sajahan Biswas</h3>
+                            <p class="text-green-200 text-sm">Hon'ble Chairman</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            "ভয়েস পাবলিক স্কুলের সূচনা লগ্ন থেকেই আমার মূল লক্ষ্য শিক্ষা ক্ষেত্রে আমাদের এই প্রতিষ্ঠানকে সর্বোচ্চ গুণমান সম্পন্ন আদর্শ শিক্ষাপ্রতিষ্ঠান হিসেবে গড়ে তোলা।"
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Secretary -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=80" alt="Secretary" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold">Dr. Jahangir Biswas</h3>
+                            <p class="text-green-200 text-sm">Secretary Cum M.D.</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed">
+                            "The dream should be dreamt by those who try to fulfill it. We cordially work hard so that all of our students can shine as successful professionals and humans with ideal values."
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Principal -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100">
+                    <div class="relative h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80" alt="Principal" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 text-white">
+                            <h3 class="text-xl font-bold">Umme Mome Rina</h3>
+                            <p class="text-green-200 text-sm">Principal Cum Joint Secretary</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <p class="text-gray-600 text-sm leading-relaxed italic">
+                            "Where the mind is without fear, the head is held high; Where knowledge is free..." - At Voice Public School, we strive to create this sanctuary for young minds.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Academic Programs Section -->
+    <section id="programs" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Academics</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Our Academic Programs</h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                    Comprehensive educational pathways designed to nurture every student's potential and prepare them for success.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Program 1: V-XII -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed457f8f?w=600&q=80" alt="School Building" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-primary font-bold text-sm">V - XII</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-school text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Class V - XII (Residential)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            We believe that a student dreams big in order to aspire to become what he/she wants to be. Here, in VPS, we nurture the talents and skills of each student by giving exposure to curiosity and building overall development.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> WBBSE & WBCHSE Affiliated</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Science, Arts & Commerce</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Residential Facilities</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Program 2: NEET -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="Medical Studies" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-primary font-bold text-sm">NEET</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-stethoscope text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">NEET (All India Medical)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            National Eligibility cum Entrance Test (NEET) is conducted by the National Testing Agency (NTA) for admission into MBBS, BDS and other undergraduate medical courses in India.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> 500+ Medical Placements</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Expert Medical Faculty</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Regular Mock Tests</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Program 3: WBJEE/JEE -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&q=80" alt="Engineering Studies" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-primary font-bold text-sm">WBJEE/JEE</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-laptop-code text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">WBJEE / JEE</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            West Bengal Joint Entrance Examination (WBJEE) is a state-level entrance examination conducted for admission into various engineering institutions in West Bengal.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Advanced Problem Solving</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Doubt Clearing Sessions</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Competitive Environment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Program 4: Special Coaching -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=600&q=80" alt="Classroom" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-primary font-bold text-sm">XI & XII</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-book-open text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Special Coaching (XI & XII)</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Specialized coaching for Class XI and XII students in Science and Arts streams with focus on board examinations and competitive entrance preparation.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Science & Arts Streams</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Board Exam Focus</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Personal Attention</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Program 5: Class X Special -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1509062522246-3725c8038303?w=600&q=80" alt="Students" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-primary font-bold text-sm">Class X</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Special Coaching for Class X</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Intensive preparation for Class X board examinations with comprehensive coverage of all subjects and regular assessment to ensure excellent results.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Board Exam Preparation</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Regular Assessments</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Result-Oriented</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Program 6: WBCS -->
+                <div class="card-hover bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=600&q=80" alt="Study" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"></div>
+                        <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+                            <span class="text-primary font-bold text-sm">WBCS</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center mb-4">
+                            <i class="fas fa-landmark text-white text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">WBCS Preparation</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                            Comprehensive preparation for West Bengal Civil Service examinations with expert guidance and structured study materials for aspiring civil servants.
+                        </p>
+                        <ul class="space-y-2 text-sm text-gray-600">
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Expert Guidance</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Study Materials</li>
+                            <li class="flex items-center"><i class="fas fa-check text-primary mr-2"></i> Interview Prep</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Campus Gallery Section -->
+    <section id="gallery" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Gallery</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Campus Life</h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                    Experience the vibrant campus life at Voice Public School through our gallery of moments.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="row-span-2">
+                    <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&q=80" alt="Campus" class="w-full h-full object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&q=80" alt="Students" class="w-full h-48 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1509062522246-3725c8038303?w=400&q=80" alt="Classroom" class="w-full h-48 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="row-span-2">
+                    <img src="https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=600&q=80" alt="Library" class="w-full h-full object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&q=80" alt="Sports" class="w-full h-48 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1564981797816-1043664bf78d?w=400&q=80" alt="Lab" class="w-full h-48 object-cover rounded-2xl shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Campuses Section -->
+    <section id="campus" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Locations</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Our Branches</h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto mt-6 text-lg">
+                    Find your nearest Voice Public School campus. We have 26+ centers across West Bengal.
+                </p>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                    <input type="text" id="campusSearch" placeholder="Search campus by location (e.g., Murshidabad, Kolkata, Malda)..." 
+                           class="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-lg shadow-sm"
+                           oninput="filterCampuses()">
+                </div>
+            </div>
+
+            <!-- Campus Grid -->
+            <div id="campusGrid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice Board Section -->
+    <section id="notice" class="py-24 gradient-bg-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&q=80" alt="Background" class="w-full h-full object-cover">
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-green-200 font-semibold text-sm uppercase tracking-wider">Updates</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-white font-display mt-2 mb-4">Notice Board</h2>
+                <div class="w-20 h-1 bg-green-300 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Notice 1 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full animate-pulse-slow">NEW</span>
+                        <span class="text-green-200 text-sm"><i class="far fa-calendar-alt mr-1"></i> 25 July 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">📝 VPS ADMISSION TEST 2027</h3>
+                    <p class="text-green-100 text-sm mb-4 leading-relaxed">
+                        Classes: III to IX. Online Form available at www.voicepublicschool.in. Offline forms available at 250+ centers across the state.
+                    </p>
+                    <div class="bg-white/10 rounded-xl p-3 mb-4">
+                        <div class="flex items-center text-sm font-semibold text-yellow-300">
+                            <i class="fas fa-calendar-check mr-2"></i> Date: Saturday, 24th October 2026
+                        </div>
+                        <div class="flex items-center text-sm font-semibold text-yellow-300 mt-1">
+                            <i class="fas fa-clock mr-2"></i> Time: 12:00 PM - 2:00 PM
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="text-xs text-green-200"><i class="fas fa-phone mr-1"></i> 9732334225</span>
+                        <span class="text-xs text-green-200"><i class="fas fa-phone mr-1"></i> 9083275303</span>
+                    </div>
+                </div>
+
+                <!-- Notice 2 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">IMPORTANT</span>
+                        <span class="text-green-200 text-sm"><i class="far fa-calendar-alt mr-1"></i> 25 July 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">⚡ ADMIT CARD DOWNLOAD</h3>
+                    <p class="text-green-100 text-sm mb-4 leading-relaxed">
+                        The admit card will be available for download from October 14, 2026, 3 PM. Please visit again on or after this date to print your admit card.
+                    </p>
+                    <div class="bg-white/10 rounded-xl p-3">
+                        <div class="flex items-center text-sm font-semibold text-yellow-300">
+                            <i class="fas fa-calendar-check mr-2"></i> Admission Test: October 24, 2026 (Saturday)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notice 3 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full">ACADEMIC</span>
+                        <span class="text-green-200 text-sm"><i class="far fa-calendar-alt mr-1"></i> 25 July 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">📝 Examination Notice</h3>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        Upcoming schedule for terminal examinations for classes V to XII. Please check the detailed routine in the student portal.
+                    </p>
+                    <div class="mt-4 text-xs text-green-300">By: Examination Cell</div>
+                </div>
+
+                <!-- Notice 4 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="bg-purple-500 text-white text-xs font-bold px-3 py-1 rounded-full">EVENT</span>
+                        <span class="text-green-200 text-sm"><i class="far fa-calendar-alt mr-1"></i> 23 July 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">🏖 Holiday Notice</h3>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        Important holiday schedule for the upcoming month. Please plan your academic activities accordingly.
+                    </p>
+                    <div class="mt-4 text-xs text-green-300">By: Admin Office</div>
+                </div>
+
+                <!-- Notice 5 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full">SPORTS</span>
+                        <span class="text-green-200 text-sm"><i class="far fa-calendar-alt mr-1"></i> 25 July 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">⚽ Sports Update</h3>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        Annual sports meet preparations underway. Registration forms available at all campus offices.
+                    </p>
+                    <div class="mt-4 text-xs text-green-300">By: Sports Committee</div>
+                </div>
+
+                <!-- Notice 6 -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-all cursor-pointer group">
+                    <div class="flex items-start justify-between mb-4">
+                        <span class="bg-pink-500 text-white text-xs font-bold px-3 py-1 rounded-full">CULTURAL</span>
+                        <span class="text-green-200 text-sm"><i class="far fa-calendar-alt mr-1"></i> 25 July 2026</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-green-200 transition-colors">⚡ Upcoming Events</h3>
+                    <p class="text-green-100 text-sm leading-relaxed">
+                        Annual cultural festival and prize distribution ceremony. Participation forms now open.
+                    </p>
+                    <div class="mt-4 text-xs text-green-300">By: Cultural Committee</div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="#" class="inline-flex items-center px-8 py-4 bg-white text-primary rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all">
+                    View All Notices <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section id="impact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Our Impact</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Transforming Lives</h2>
+                <div class="section-divider mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-user-md text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">500+</div>
+                    <div class="text-gray-600">Medical Doctors</div>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-building text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">26+</div>
+                    <div class="text-gray-600">Campuses</div>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-users text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">5000+</div>
+                    <div class="text-gray-600">Current Students</div>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-trophy text-white text-3xl"></i>
+                    </div>
+                    <div class="text-4xl font-bold text-gray-900 mb-2">13+</div>
+                    <div class="text-gray-600">Years of Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admission Section -->
+    <section id="admission" class="py-24 bg-gradient-to-b from-green-50 to-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="text-primary font-semibold text-sm uppercase tracking-wider">Admissions</span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Begin Your Journey</h2>
+            <div class="section-divider mx-auto"></div>
+            <p class="text-gray-600 text-lg mt-6 mb-12">
+                Admission is open for the upcoming academic session 2027. Choose your category and apply online or download the offline form.
+            </p>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-child text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Class III to IX</h3>
+                    <p class="text-gray-500 text-sm mb-6">Foundation & Middle School</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Apply Online <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-user-graduate text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Class XI & XII</h3>
+                    <p class="text-gray-500 text-sm mb-6">Science & Arts Streams</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Apply Online <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+
+                <div class="card-hover bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+                    <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                        <i class="fas fa-briefcase-medical text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">JEE / NEET</h3>
+                    <p class="text-gray-500 text-sm mb-6">Competitive Coaching</p>
+                    <a href="#" class="inline-flex items-center text-primary font-semibold hover:underline">
+                        Apply Online <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="px-8 py-4 gradient-bg text-white rounded-full font-bold shadow-lg shadow-green-200 hover:shadow-green-300 transform hover:-translate-y-1 transition-all flex items-center">
+                    <i class="fas fa-file-download mr-2"></i> Download Question Set
+                </button>
+                <button class="px-8 py-4 bg-white border-2 border-primary text-primary rounded-full font-bold hover:bg-primary hover:text-white transition-all flex items-center">
+                    <i class="fas fa-print mr-2"></i> Download Admit Card
+                </button>
+                <button class="px-8 py-4 bg-gray-100 text-gray-700 rounded-full font-bold hover:bg-gray-200 transition-all flex items-center">
+                    <i class="fas fa-map-marker-alt mr-2"></i> Offline Form Centers
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Section -->
+    <section id="policy" class="py-24 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="text-primary font-semibold text-sm uppercase tracking-wider">Legal</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 font-display mt-2 mb-4">Terms & Policies</h2>
+                <div class="section-divider mx-auto"></div>
+                <p class="text-gray-600 mt-6">Last updated: July 2026</p>
+            </div>
+
+            <div class="space-y-6 text-gray-600 leading-relaxed">
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                        <i class="fas fa-info-circle text-primary mr-2"></i> About This Website
+                    </h3>
+                    <p>The Website Owner, including subsidiaries and affiliates ("Website" or "Website Owner" or "we" or "us" or "our") provides the information contained on the website to visitors subject to these terms and conditions.</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                        <i class="fas fa-building text-primary mr-2"></i> Registered Office
+                    </h3>
+                    <p>Voice Public School | MANGALJAN, P.O: GHORSHALA, P.S: RAGHUNATHGANJ, MURSHIDABAD, WEST BENGAL, PIN: 742235</p>
+                </div>
+
+                <div class="bg-gray-50 rounded-2xl p-6">
+                    <h3 class="text-lg font-bold text-gray-900 mb-3 flex items-center">
+                        <i class="fas fa-exclamation-triangle text-primary mr-2"></i> Terms of Use
+                    </h3>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-start"><i class="fas fa-check text-primary mr-2 mt-1"></i> Content is for general information and use only. Subject to change without notice.</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mr-2 mt-1"></i> Neither we nor any third parties provide any warranty or guarantee as to accuracy.</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mr-2 mt-1"></i> Your use of any information is entirely at your own risk.</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mr-2 mt-1"></i> Unauthorized use may give rise to a claim for damages and/or be a criminal offence.</li>
+                        <li class="flex items-start"><i class="fas fa-check text-primary mr-2 mt-1"></i> Your use of this website is subject to the laws of India.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-20 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <!-- About -->
+                <div>
+                    <img src="https://www.voicepublicschool.in/logo.png" alt="Voice Public School" class="h-16 w-auto mb-6 bg-white p-2 rounded-xl">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Empowering students to achieve their dreams through quality education, moral values, and holistic development since 2012.
+                    </p>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#about" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> About Us</a></li>
+                        <li><a href="#programs" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Academic Programs</a></li>
+                        <li><a href="#campus" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Our Campuses</a></li>
+                        <li><a href="#admission" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Admission Process</a></li>
+                        <li><a href="#gallery" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Gallery & Stories</a></li>
+                        <li><a href="#notice" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Notice Board</a></li>
+                    </ul>
+                </div>
+
+                <!-- Policies -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Policies</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li><a href="#policy" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Terms & Conditions</a></li>
+                        <li><a href="#policy" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Privacy Policy</a></li>
+                        <li><a href="#policy" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Payment Policy</a></li>
+                        <li><a href="#policy" class="hover:text-primary transition-colors flex items-center"><i class="fas fa-chevron-right mr-2 text-xs"></i> Cancellation Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6">Contact Us</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-primary"></i>
+                            <span>Mangaljan, P.O: Ghorshala, P.S: Raghunathganj, Murshidabad, West Bengal, PIN: 742235</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-primary"></i>
+                            <span>+91 9732334261 / 9083275303</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-primary"></i>
+                            <span>info@voicepublicschool.in</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe mr-3 text-primary"></i>
+                            <span>www.voicepublicschool.in</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Affiliations -->
+            <div class="border-t border-gray-800 pt-8 mb-8">
+                <div class="flex flex-wrap items-center justify-center gap-6 text-gray-500 text-sm">
+                    <span class="font-semibold text-gray-400">Affiliated With:</span>
+                    <span class="bg-gray-800 px-4 py-2 rounded-lg">WBBSE (UDISE: 19072501601, INDEX NO. E3-150)</span>
+                    <span class="bg-gray-800 px-4 py-2 rounded-lg">WBCHSE (HS CODE: 116417)</span>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2026 Voice Public School. All rights reserved.</p>
+                <p class="text-gray-600 text-xs">Designed with <i class="fas fa-heart text-red-500 mx-1"></i> for Excellence in Education</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/919732334261" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[70] flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="closeModal('loginModal')" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 text-xl">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-green-200">
+                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 font-display">Secure Login</h3>
+                <p class="text-gray-500 text-sm mt-2">Access your student or official portal securely.</p>
+            </div>
+
+            <!-- Phone Step -->
+            <div id="phoneStep">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Registered Mobile Number</label>
+                <div class="relative mb-6">
+                    <span class="absolute left-4 top-3.5 text-gray-500 font-medium">+91</span>
+                    <input type="tel" id="phoneNumber" maxlength="10" placeholder="9876543210" 
+                           class="w-full pl-14 pr-4 py-3.5 rounded-xl border-2 border-gray-200 focus:border-primary focus:ring-4 focus:ring-primary/10 outline-none transition-all text-lg">
+                </div>
+                <button onclick="showOTP()" class="w-full gradient-bg text-white py-4 rounded-xl font-bold shadow-lg shadow-green-200 hover:shadow-green-300 transition-all">
+                    Send OTP
+                </button>
+            </div>
+
+            <!-- OTP Step -->
+            <div id="otpStep" class="hidden">
+                <p class="text-gray-600 text-center mb-6 text-sm">Enter the 6-digit OTP sent to your mobile number.</p>
+                <div class="flex justify-center space-x-2 mb-8" id="otpInputs">
+                    <input type="text" maxlength="1" class="otp-box" onkeyup="moveToNext(this, 0)" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input type="text" maxlength="1" class="otp-box" onkeyup="moveToNext(this, 1)" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input type="text" maxlength="1" class="otp-box" onkeyup="moveToNext(this, 2)" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input type="text" maxlength="1" class="otp-box" onkeyup="moveToNext(this, 3)" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input type="text" maxlength="1" class="otp-box" onkeyup="moveToNext(this, 4)" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                    <input type="text" maxlength="1" class="otp-box" onkeyup="moveToNext(this, 5)" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                </div>
+                <button class="w-full gradient-bg text-white py-4 rounded-xl font-bold shadow-lg shadow-green-200 hover:shadow-green-300 transition-all mb-3">
+                    Verify & Login
+                </button>
+                <button onclick="backToPhone()" class="w-full text-gray-500 hover:text-gray-700 text-sm font-medium">
+                    Change Mobile Number
+                </button>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-gray-100 text-center">
+                <p class="text-xs text-gray-400 flex items-center justify-center">
+                    <i class="fas fa-lock mr-1"></i> Your information is encrypted and secure
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Campus Data
+        const campuses = [
+            { name: "Mangaljan Ketly Bari", location: "Murshidabad", classes: "V to XII", type: "Boys, Science", phone: "9732334261 | 9732334207" },
+            { name: "Mangaljan Collegiate", location: "Murshidabad", classes: "III to XII", type: "Girls, All Streams", phone: "9083275303 | 9775225052" },
+            { name: "Umarpur Hospital", location: "Murshidabad", classes: "XI and XII", type: "Girls, Science", phone: "9083275302 | 9083275307" },
+            { name: "Umarpur (Boys)", location: "Murshidabad", classes: "XI and XII", type: "Boys, Science", phone: "9775220838 | 8436820665" },
+            { name: "Laxmipur", location: "Malda", classes: "V to XII", type: "Girls, Science & Arts", phone: "8695596793 | 8336970104" },
+            { name: "Taratla (Nature Park)", location: "Kolkata", classes: "XI and XII", type: "Boys, NEET Coaching", phone: "8100268650 | 9163489589" },
+            { name: "Science City", location: "Kolkata", classes: "XI and XII", type: "Girls, NEET Coaching", phone: "8584011876 | 8274975597" },
+            { name: "Patnour (Domohana)", location: "Uttar Dinajpur", classes: "V to XII", type: "Boys", phone: "9732883356 | 8336970174" },
+            { name: "Chhabghati Hayatan", location: "Murshidabad", classes: "V to XII", type: "Boys, Science & Commerce", phone: "9732334246 | 9735586479" },
+            { name: "Chhabghati Bagan", location: "Murshidabad", classes: "Nursery to XII", type: "Girls, Arts", phone: "8927093602 | 9732334246" },
+            { name: "Chhabghati Scholar Academy", location: "Murshidabad", classes: "KG to V", type: "Anglo-Bengali Co-ed", phone: "9641830501 | 8016114652" },
+            { name: "Dhubulia (Al Habib)", location: "Nadia", classes: "V to XII", type: "Boys, Science", phone: "7029139192 | 8336970107" },
+            { name: "Devgram (Al Habib Girls)", location: "Nadia", classes: "III to X", type: "Girls", phone: "9333252470 | 9775669544" },
+            { name: "Jhunka (Beldanga)", location: "Murshidabad", classes: "V to XII", type: "Girls, Science & Arts", phone: "9734333555 | 7586050708" },
+            { name: "Chetiyani (Rejinagar)", location: "Murshidabad", classes: "V to XII", type: "Boys, Science & Arts", phone: "7432050708 | 9734333555" },
+            { name: "Amtala", location: "Murshidabad", classes: "III to XII", type: "Boys & Girls", phone: "9732811865 | 7076410160" },
+            { name: "Monigram (PDCL)", location: "Murshidabad", classes: "V to X", type: "Boys", phone: "8167304878 | 9883170435" },
+            { name: "Bagpara (PDCL)", location: "Murshidabad", classes: "XI and XII", type: "Boys, Science & Arts", phone: "9775229158 | 9647028291" },
+            { name: "Lohapur", location: "Birbhum", classes: "V to X", type: "Boys", phone: "9800882820 | 9932277006" },
+            { name: "Lalgola (Abdus Sattar)", location: "Murshidabad", classes: "V to XII", type: "Boys, Science", phone: "9735586469 | 9733763525" },
+            { name: "Basirhat", location: "North 24 Parganas", classes: "V to X", type: "Boys & Girls", phone: "9051214102" },
+            { name: "Baro Andulia (Chapra)", location: "Nadia", classes: "V to XII", type: "Girls, Science & Arts", phone: "9679070179 | 9679075189" },
+            { name: "Salar", location: "Murshidabad", classes: "V to XII", type: "Girls, Science & Arts", phone: "8597345752 | 9732476541" },
+            { name: "Choto Chandghar (Palashi)", location: "Nadia", classes: "V to XII", type: "Boys, Science", phone: "8967676608 | 9547076326" }
+        ];
+
+        // Render Campus Cards
+        function renderCampuses(list) {
+            const grid = document.getElementById('campusGrid');
+            grid.innerHTML = list.map((campus, index) => `
+                <div class="campus-card bg-white rounded-2xl p-6 shadow-md border border-gray-100 hover:shadow-xl transition-all">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 gradient-bg rounded-xl flex items-center justify-center">
+                            <i class="fas fa-school text-white text-lg"></i>
+                        </div>
+                        <span class="bg-green-100 text-primary text-xs font-bold px-3 py-1 rounded-full">Active</span>
+                    </div>
+                    <h4 class="font-bold text-gray-900 text-lg mb-1">${campus.name}</h4>
+                    <p class="text-primary text-sm font-medium mb-2">${campus.location}</p>
+                    <div class="space-y-1 text-sm text-gray-600 mb-4">
+                        <div class="flex items-center"><i class="fas fa-graduation-cap mr-2 text-gray-400 w-4"></i> ${campus.classes}</div>
+                        <div class="flex items-center"><i class="fas fa-users mr-2 text-gray-400 w-4"></i> ${campus.type}</div>
+                    </div>
+                    <div class="pt-4 border-t border-gray-100">
+                        <div class="flex items-center text-xs text-gray-500">
+                            <i class="fas fa-phone-alt mr-2 text-primary"></i>
+                            <span>${campus.phone}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        renderCampuses(campuses);
+
+        // Filter Campuses
+        function filterCampuses() {
+            const query = document.getElementById('campusSearch').value.toLowerCase();
+            const filtered = campuses.filter(c => 
+                c.name.toLowerCase().includes(query) || 
+                c.location.toLowerCase().includes(query) ||
+                c.type.toLowerCase().includes(query)
+            );
+            renderCampuses(filtered);
+        }
+
+        // Modal Functions
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            backToPhone();
+        }
+
+        function showOTP() {
+            const phone = document.getElementById('phoneNumber').value;
+            if (phone.length === 10) {
+                document.getElementById('phoneStep').classList.add('hidden');
+                document.getElementById('otpStep').classList.remove('hidden');
+                document.querySelectorAll('.otp-box')[0].focus();
+            } else {
+                alert('Please enter a valid 10-digit mobile number');
+            }
+        }
+
+        function backToPhone() {
+            document.getElementById('phoneStep').classList.remove('hidden');
+            document.getElementById('otpStep').classList.add('hidden');
+            document.querySelectorAll('.otp-box').forEach(input => input.value = '');
+        }
+
+        function moveToNext(input, index) {
+            if (input.value.length === 1) {
+                const inputs = document.querySelectorAll('.otp-box');
+                if (index < 5) inputs[index + 1].focus();
+            }
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('loginModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal('loginModal');
+            }
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+</body>
+</html>
